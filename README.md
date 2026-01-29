@@ -1,5 +1,5 @@
-# SignalX
-SignalX is a practical, real-time traffic signal controller that runs on a laptop and adapts signal timings using live camera feeds.
+# TrafficXia
+TrafficXia is a practical, real-time traffic signal controller that runs on a laptop and adapts signal timings using live camera feeds.
 
 It’s built for dense, mixed traffic (common in Indian roads) where fixed-time signals waste green time and don’t react to congestion.
 
@@ -7,7 +7,7 @@ It’s built for dense, mixed traffic (common in Indian roads) where fixed-time 
 
 ---
 
-## What SignalX does (today)
+## What TrafficXia does (today)
 - Supports **2–4 approaches** (each approach = one camera feed)
 - Detects vehicles in real-time using **YOLO**
 - Calculates **vehicle count per approach** (ignores “person”)
@@ -29,7 +29,7 @@ Fixed-time traffic signals don’t work well when:
 - vehicle types are mixed (bike/auto/bus/truck)
 - signals must react instantly
 
-SignalX is built to be **real-world deployable**, not a simulation project.
+TrafficXia is built to be **real-world deployable**, not a simulation project.
 
 ---
 
