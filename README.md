@@ -62,9 +62,6 @@ TrafficXia is built to be **real-world deployable**, not a simulation project.
 
 ## Requirements
 - Python 3.10+
-- A GPU helps a lot 
-- Windows/Linux supported
-
 ---
 
 ## Install
