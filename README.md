@@ -62,6 +62,12 @@ TrafficXia is built to be **real-world deployable**, not a simulation project.
 
 ## Requirements
 - Python 3.10+
+- ultralytics
+- opencv-python
+- numpy
+- sounddevice
+- librosa
+- tensorflow
 ---
 
 ## Install
