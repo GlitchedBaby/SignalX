@@ -66,8 +66,4 @@ TrafficXia is built to be **real-world deployable**, not a simulation project.
 
 ## Install
 ```bash
-python -m venv venv
-
-.\venv\Scripts\Activate.ps1
-
 pip install -r requirements.txt
