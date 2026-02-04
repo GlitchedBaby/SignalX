@@ -1,83 +1,107 @@
-# TrafficXia
-TrafficXia is a practical, real-time traffic signal controller that runs on a laptop and adapts signal timings using live camera feeds.
+TrafficXia — Adaptive Traffic Signal Using Computer Vision
 
-It’s built for dense, mixed traffic (common in Indian roads) where fixed-time signals waste green time and don’t react to congestion.
+TrafficXia is a real-time traffic signal controller that adjusts signal timings using live camera feeds instead of fixed schedules.
 
-> Current release focuses on vehicle-based adaptive control (NO siren/emergency module yet — planned for future updates).
+It is designed for dense, mixed traffic environments (common in urban roads) where traditional fixed-time signals waste green time and fail to react to congestion.
 
----
+Current version focuses on vehicle-based adaptive control. Emergency vehicle prioritization is planned for future releases.
 
-## What TrafficXia does (today)
-- Supports **2–4 approaches** (each approach = one camera feed)
-- Detects vehicles in real-time using **YOLO**
-- Calculates **vehicle count per approach** (ignores “person”)
-- Runs an adaptive signal cycle:
-  - **GREEN** starts with a base time
-  - Extends GREEN in steps if vehicles keep coming
-  - Cuts GREEN short if the approach is empty
-  - Uses safety transitions: **GREEN → YELLOW → ALL-RED → next GREEN**
-- Includes a simple startup UI to map:
-  - Approach name
-  - Camera index per approach
+What TrafficXia does
 
----
+Supports 2–4 approaches (each approach mapped to a camera feed)
 
-## Why this exists
-Fixed-time traffic signals don’t work well when:
-- traffic density changes minute-to-minute
-- lanes are unstructured
-- vehicle types are mixed (bike/auto/bus/truck)
-- signals must react instantly
+Detects vehicles in real time using YOLO
 
-TrafficXia is built to be **real-world deployable**, not a simulation project.
+Calculates vehicle count per approach (pedestrians ignored)
 
----
+Runs an adaptive signal cycle:
 
-## Demo flow (how it behaves)
-1. Opens camera feeds (2–4)
-2. Counts vehicles per approach
-3. Gives GREEN to one approach at a time
-4. If **no vehicles**, it moves on quickly
-5. If **vehicles are flowing**, it holds green up to a safe maximum
-6. Rotates continuously and fairly
+GREEN starts with a base duration
 
----
+Extends if vehicles continue arriving
 
-## Current limitations (honest notes)
-- Accuracy depends on camera angle, lighting, and ROI placement
-- Very congested scenes may need better ROI tuning and thresholds
-- This is a single-intersection prototype (multi-intersection coordination is planned)
+Terminates early when the lane is empty
 
----
+Safe transitions: GREEN → YELLOW → ALL-RED → next GREEN
 
-## Planned upgrades (future)
-- Emergency vehicle prioritization (siren/GPS/V2X)
-- Green-wave coordination across consecutive intersections
-- Weather/time-aware policies
-- MQTT/WebSockets for distributed intersections
-- Hardware traffic signal interface (Arduino/ESP32/PLC)
-- Dashboard and logging for monitoring
+Simple configuration UI to map:
 
----
+Approach names
 
-## Requirements
-- Python 3.10+
-- ultralytics
-- opencv-python
-- numpy
-- sounddevice
-- librosa
-- tensorflow
----
+Camera index
 
-## License
+Motivation
 
-This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
+Fixed-time traffic signals perform poorly when:
 
-It uses Ultralytics YOLO models, which are distributed under the same license.
-Commercial use of YOLO models may require a separate commercial license.
+traffic density changes frequently
 
+lanes are unstructured
 
-## Install
-```bash
+vehicle types vary (bikes, autos, buses, trucks)
+
+real-time response is required
+
+TrafficXia aims to behave like a responsive intersection controller rather than a pre-programmed timer.
+
+System Behaviour
+
+Opens camera feeds
+
+Detects and counts vehicles per approach
+
+Allocates GREEN to one approach at a time
+
+Skips quickly if empty
+
+Holds GREEN longer when flow continues
+
+Rotates fairly across approaches
+
+Current Limitations
+
+Detection accuracy depends on camera placement and lighting
+
+Heavy congestion may require ROI tuning
+
+Prototype supports a single intersection
+
+Planned Improvements
+
+Emergency vehicle prioritization (siren/GPS/V2X)
+
+Multi-intersection coordination (green wave)
+
+Weather/time-aware policies
+
+Distributed intersections via MQTT/WebSockets
+
+Hardware signal interface (Arduino/ESP32/PLC)
+
+Monitoring dashboard and logging
+
+Requirements
+
+Python 3.10+
+
+ultralytics
+
+opencv-python
+
+numpy
+
+sounddevice
+
+librosa
+
+tensorflow
+
+Installation
 pip install -r requirements.txt
+
+License
+
+GNU Affero General Public License v3.0 (AGPL-3.0)
+
+This project uses Ultralytics YOLO models which follow the same license.
+Commercial usage may require a separate commercial license from Ultralytics.
